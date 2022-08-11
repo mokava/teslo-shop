@@ -1,4 +1,6 @@
 export * as db from './db';
+export * as dbProducts from './dbProducts';
+export * as dbUsers from './dbUsers';
 export * from './constants';
 
-export * as seedProducts from './products';
+export * as seedDatabase from './seed-data';

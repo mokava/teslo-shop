@@ -5,4 +5,6 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - ./mongo:/data/db
+      - /home/moka/mokava/next/05-teslo-shop/mongo:/data/db
+# volumes:
+#   mongo_database:

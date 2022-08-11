@@ -30,5 +30,5 @@ Renombrar el archivo **.env.template** a **.env**
 Llamar a:
 
 ```
-http://localhost:8080/api/seed
+http://localhost:3000/api/seed
 ```
