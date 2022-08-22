@@ -62,7 +62,7 @@ export default NextAuth({
 				}
 			}
 
-			console.log({ token, account, user });
+			// console.log({ token, account, user });
 
 			return token;
 		},
@@ -70,7 +70,7 @@ export default NextAuth({
 			session.accessToken = token.accessToken;
 			session.user = token.user as any;
 
-			console.log({ session, token, user });
+			// console.log({ session, token, user });
 			return session;
 		},
 	},

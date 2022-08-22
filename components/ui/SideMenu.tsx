@@ -33,6 +33,7 @@ import {
 import { UiContext } from '../../context';
 import { useRouter } from 'next/router';
 import { AuthContext } from '../../context/auth/AuthContext';
+import { DashboardOutlined } from '@mui/icons-material';
 
 export const SideMenu = () => {
 	const router = useRouter();
@@ -87,7 +88,7 @@ export const SideMenu = () => {
 								<ListItemText primary={'Perfil'} />
 							</ListItem>
 
-							<ListItem button>
+							<ListItem button onClick={() => navigateTo('/orders/history')}>
 								<ListItemIcon>
 									<ConfirmationNumberOutlined />
 								</ListItemIcon>
@@ -152,20 +153,26 @@ export const SideMenu = () => {
 							<Divider />
 							<ListSubheader>Admin Panel</ListSubheader>
 
-							<ListItem button>
+							<ListItem button onClick={() => navigateTo(`/admin`)}>
+								<ListItemIcon>
+									<DashboardOutlined />
+								</ListItemIcon>
+								<ListItemText primary={'Dashboard'} />
+							</ListItem>
+							<ListItem button onClick={() => navigateTo(`/admin/products`)}>
 								<ListItemIcon>
 									<CategoryOutlined />
 								</ListItemIcon>
 								<ListItemText primary={'Productos'} />
 							</ListItem>
-							<ListItem button>
+							<ListItem button onClick={() => navigateTo(`/admin/orders`)}>
 								<ListItemIcon>
 									<ConfirmationNumberOutlined />
 								</ListItemIcon>
 								<ListItemText primary={'Ordenes'} />
 							</ListItem>
 
-							<ListItem button>
+							<ListItem button onClick={() => navigateTo(`/admin/users`)}>
 								<ListItemIcon>
 									<AdminPanelSettings />
 								</ListItemIcon>

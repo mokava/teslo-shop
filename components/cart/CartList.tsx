@@ -11,13 +11,14 @@ import NextLink from 'next/link';
 import { ItemCounter } from '../ui';
 import { useContext } from 'react';
 import { CartContext } from '../../context/cart/CartContext';
-import { ICartProduct } from '../../interfaces';
+import { ICartProduct, IOrderItems } from '../../interfaces';
 
 interface Props {
 	editable?: boolean;
+	products?: IOrderItems[];
 }
 
-export const CartList = ({ editable = false }: Props) => {
+export const CartList = ({ editable = false, products }: Props) => {
 	const { cart, updateCartQuantity, removeCartProduct } =
 		useContext(CartContext);
 
@@ -30,9 +31,11 @@ export const CartList = ({ editable = false }: Props) => {
 		removeCartProduct(product);
 	};
 
+	const productsToShow = products ? products : cart;
+
 	return (
 		<>
-			{cart.map((product) => (
+			{productsToShow.map((product) => (
 				<Grid
 					container
 					spacing={2}
@@ -44,7 +47,7 @@ export const CartList = ({ editable = false }: Props) => {
 							<Link>
 								<CardActionArea>
 									<CardMedia
-										image={`/products/${product.image}`}
+										image={product.image}
 										component='img'
 										sx={{ borderRadius: '5px' }}
 									/>
@@ -61,8 +64,10 @@ export const CartList = ({ editable = false }: Props) => {
 							{editable ? (
 								<ItemCounter
 									currentQuantity={product.quantity}
-									updatedQuantity={(value) => updatedQuantity(product, value)}
-									maxQuantity={product.inStock}
+									updatedQuantity={(value) =>
+										updatedQuantity(product as ICartProduct, value)
+									}
+									maxQuantity={10} // TODO: {product.inStock}as ICartProduct
 								/>
 							) : (
 								<Typography variant='h5'>
@@ -82,7 +87,7 @@ export const CartList = ({ editable = false }: Props) => {
 						<Typography variant='subtitle1'>${product.price}</Typography>
 						{editable && (
 							<Button
-								onClick={() => removeProduct(product)}
+								onClick={() => removeProduct(product as ICartProduct)}
 								variant='text'
 								color='secondary'
 							>
